@@ -1,0 +1,33 @@
+{
+  "name": "giphy-js",
+  "version": "1.0.0",
+  "description": "frontend/backend with register/login users",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megabass00/giphyjs.git"
+  },
+  "author": "Luis Izquierdo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megabass00/giphyjs/issues"
+  },
+  "homepage": "https://github.com/megabass00/giphyjs#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.4.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
