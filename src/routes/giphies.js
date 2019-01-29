@@ -34,8 +34,9 @@ router.put('/giphies/edit/:id', async (req, res) => {
     res.redirect('/giphies/');
 });
 
-router.delete('/giphies/delete/:id', (req, res) => {
-    console.log(req.params.id);
+router.get('/giphies/delete/:id', async (req, res) => {
+    await Giphy.findByIdAndDelete(req.params.id);
+    res.redirect('/giphies/');
 });
 
 function validateGiphy(data) {
