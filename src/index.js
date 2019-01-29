@@ -39,6 +39,9 @@ app.use(session({
 app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/giphies'));
+// app.get('*', (req, res) => { 
+//     res.render('errors/404'); 
+// });
 
 
 // static files

@@ -3,7 +3,7 @@ $(document).ready(function(){
     // initialize datatables
     $('.datatable-js').DataTable( {
         "columnDefs": [
-            { "orderable": false, "targets": 3 }
+            { "orderable": false, "targets": [1,3] }
         ]
     });
 

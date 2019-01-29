@@ -11,7 +11,6 @@ router.get('/giphies/new-giphy', (req, res) => {
 });
 
 router.post('/giphies/add', async (req, res) => {
-    // console.log(req.body);
     var errors = validateGiphy(req.body);
     const { title, description, url } = req.body;
     if (errors.length > 0) {
@@ -20,8 +19,23 @@ router.post('/giphies/add', async (req, res) => {
         const newGiphy = new Giphy({ title, description, url });
         await newGiphy.save();
         console.log(newGiphy);
-        res.redirect('giphies/');
+        res.redirect('/giphies/');
     }
+});
+
+router.get('/giphies/edit-giphy/:id', async (req, res) => {
+    const giphy = await Giphy.findById(req.params.id);
+    res.render('giphies/edit', { giphy });
+});
+
+router.put('/giphies/edit/:id', async (req, res) => {
+    const { _id, title, description, url } = req.body;
+    const giphy = await Giphy.findByIdAndUpdate(req.params.id, { title, description, url });
+    res.redirect('/giphies/');
+});
+
+router.delete('/giphies/delete/:id', (req, res) => {
+    console.log(req.params.id);
 });
 
 function validateGiphy(data) {

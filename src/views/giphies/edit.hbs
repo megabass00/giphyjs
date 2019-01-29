@@ -1,0 +1,49 @@
+<div class="mx-auto">
+    <div class="card">
+        <div class="card-title mx-auto mt-3">
+            <h3 class="main-color">
+                <i class="fas fa-edit"></i>
+                Edit Giphy
+            </h3>
+        </div>
+        <div class="card-body">
+            {{#each errors}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/each}}
+            <form action="/giphies/edit/{{ giphy.id }}?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" name="title" value="{{giphy.title}}" class="form-control" placeholder="Title for giphy" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="url">URL *</label>
+                    <input type="text" name="url" value="{{giphy.url}}" class="form-control" placeholder="Enter the url" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description <i>(optional)</i></label>
+                    <textarea class="form-control" name="description" value="{{giphy.description}}" rows="2" placeholder="If you wish you can enter a description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tag the giphy</label>
+                    <select multiple class="form-control" tags="tags[]">
+                        <option value="1">Tag 1</option>
+                        <option value="2">Tag 2</option>
+                        <option value="3">Tag 3</option>
+                    </select>
+                </div>
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-main btn-block">
+                        <i class="fas fa-check"></i>
+                        Update Giphy
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
