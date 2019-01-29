@@ -5,9 +5,11 @@ const expHb = require('express-handlebars');
 const methodOverride = require('method-override');
 const session = require('express-session');
 
+
 // initizalizations
 const app = express();
 require('./database');
+
 
 // settings
 app.set('port', process.env.PORT || 3000);
@@ -20,6 +22,7 @@ app.engine('.hbs', expHb({
 }));
 app.set('view engine', '.hbs');
 
+
 // middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
@@ -31,13 +34,16 @@ app.use(session({
 
 // global vars
 
+
 // routes
 app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/giphies'));
 
+
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // starting
 app.listen(app.get('port'), () => {
