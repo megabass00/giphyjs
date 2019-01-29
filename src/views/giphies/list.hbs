@@ -1,5 +1,5 @@
 <div class="card card-datatable">
-    <h3 class="main-color">
+    <h3 class="main-color mb-4">
         Giphy List
     </h3>
     {{#if giphies}}
@@ -17,7 +17,16 @@
                     <tr>
                         <td>{{ title }}</td>
                         <td><img height="30" src="{{ url }}" alt=""></td>
-                        <td>{{ description }}</td>
+                        <td>
+                            {{#if description }}
+                                {{ description }}
+                            {{else}}
+                                <div style="color:#bbb;">
+                                    <small><i class="mr-2">No description</i></small>
+                                    <i class="far fa-frown"></i>
+                                </div>
+                            {{/if}}
+                        </td>
                         <td>
                             <button class="btn btn-primary btn-clipboard" data-clipboard-text="{{ url }}">
                                 <i class="far fa-copy"></i>

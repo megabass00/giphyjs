@@ -23,7 +23,12 @@
                 </div>
                 <div class="form-group">
                     <label for="url">URL *</label>
-                    <input type="text" name="url" value="{{giphy.url}}" class="form-control" placeholder="Enter the url" autofocus>
+                    <div class="input-group preview-giphy">
+                        <div class="input-group-prepend"><span class="input-group-text">
+                            <img src="{{ giphy.url }}" height="50">
+                        </span></div>
+                        <input type="text" name="url" value="{{giphy.url}}" class="form-control" placeholder="Enter the url">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Description <i>(optional)</i></label>
