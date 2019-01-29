@@ -1,0 +1,35 @@
+<div class="card card-datatable">
+    <table class="datatable-js">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Giphy</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each giphies}}
+                <tr>
+                    <td>{{ title }}</td>
+                    <td><img height="30" src="{{ url }}" alt=""></td>
+                    <td>{{ description }}</td>
+                    <td>
+                        <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Copy giphy to clipboard">
+                            <i class="far fa-copy"></i>
+                        </a>
+                        <a href="{{ url }}" class="btn btn-success" target="_blank" data-toggle="tooltip" data-placement="top" title="Open giphy url">
+                            <i class="far fa-eye"></i>
+                        </a>
+                        <a href="/giphies/edit-giphy/{{ _id }}" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit giphy">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="/giphies/delete/{{ _id }}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Remove giphy">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

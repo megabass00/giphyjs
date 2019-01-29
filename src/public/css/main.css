@@ -31,6 +31,17 @@ h1, h2, h3, h4 {
 }
 
 
+/* DATATABLES */
+.card-datatable {
+    padding: 20px;
+    font-size: .9em;
+}
+input[type="search"] {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+
 
 /* FORMS */
 .card {
