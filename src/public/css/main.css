@@ -7,7 +7,18 @@ body, html {
 h1, h2, h3, h4 {
     font-family: Righteous;
 }
-
+.btn-main {
+    color: white;
+    background: #51ce00;
+    transition: background 0.3s;
+}
+.btn-main:hover {
+    color: white;
+    background: #42a501;
+}
+.main-color {
+    color: #51ce00;
+}
 
 
 
