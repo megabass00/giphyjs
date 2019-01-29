@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
     
@@ -68,18 +68,16 @@
     </header>
     {{!-- end navigation --}}
 
-    <main class="container-fluid">
+    <main id="content" class="container-fluid mt-4 mb-4">
         {{{ body }}}
     </main>
 
     
     {{!-- footer --}}
-    <footer class="footer fixed-bottom">
-      <div class="container-fluid">
+    <footer class="container-fluid w-100 bg-dark text-light py-3">
         <span class="text-muted">
             © 2019 Consejo Jedi · Gif manager system
         </span>
-      </div>
     </footer>
     {{!-- end footer --}}
 
