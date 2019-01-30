@@ -16,7 +16,9 @@
                 {{#each giphies}}
                     <tr>
                         <td>{{ title }}</td>
-                        <td><img height="30" src="{{ url }}" alt=""></td>
+                        <td>
+                            <img height="30" data-action="lumos" src="{{ url }}" alt="Giphy APP">
+                        </td>
                         <td>
                             {{#if description }}
                                 {{ description }}
