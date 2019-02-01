@@ -18,7 +18,7 @@ router.post('/giphies/add', async (req, res) => {
     }else{
         const newGiphy = new Giphy({ title, description, url });
         await newGiphy.save();
-        console.log(newGiphy);
+        req.flash('success_msg', 'New giphy added successfully');
         res.redirect('/giphies/');
     }
 });
@@ -31,6 +31,7 @@ router.get('/giphies/edit-giphy/:id', async (req, res) => {
 router.put('/giphies/edit/:id', async (req, res) => {
     const { _id, title, description, url } = req.body;
     const giphy = await Giphy.findByIdAndUpdate(req.params.id, { title, description, url });
+    req.flash('success_msg', 'Giphy updated successfully');
     res.redirect('/giphies/');
 });
 

@@ -7,14 +7,7 @@
             </h3>
         </div>
         <div class="card-body">
-            {{#each errors}}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {{/each}}
+            {{> messages }}
             <form action="/giphies/edit/{{ giphy.id }}?_method=PUT" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
