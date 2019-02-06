@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const Giphy = require('../models/Giphy');
+const { isAuthenticated } = require('../helpers/auth');
 
-router.get('/giphies', async (req, res) => {
+router.get('/giphies', isAuthenticated, async (req, res) => {
     const giphies = await  Giphy.find();
     res.render('giphies/list', { giphies });
 });
 
-router.get('/giphies/new-giphy', (req, res) => {
+router.get('/giphies/new-giphy', isAuthenticated, (req, res) => {
     res.render('giphies/add');
 });
 
-router.post('/giphies/add', async (req, res) => {
+router.post('/giphies/add', isAuthenticated, async (req, res) => {
     var errors = validateGiphy(req.body);
     const { title, description, url } = req.body;
     if (errors.length > 0) {
@@ -23,19 +24,19 @@ router.post('/giphies/add', async (req, res) => {
     }
 });
 
-router.get('/giphies/edit-giphy/:id', async (req, res) => {
+router.get('/giphies/edit-giphy/:id', isAuthenticated, async (req, res) => {
     const giphy = await Giphy.findById(req.params.id);
     res.render('giphies/edit', { giphy });
 });
 
-router.put('/giphies/edit/:id', async (req, res) => {
+router.put('/giphies/edit/:id', isAuthenticated, async (req, res) => {
     const { _id, title, description, url } = req.body;
     const giphy = await Giphy.findByIdAndUpdate(req.params.id, { title, description, url });
     req.flash('success_msg', 'Giphy updated successfully');
     res.redirect('/giphies/');
 });
 
-router.get('/giphies/delete/:id', async (req, res) => {
+router.get('/giphies/delete/:id', isAuthenticated, async (req, res) => {
     await Giphy.findByIdAndDelete(req.params.id);
     res.redirect('/giphies/');
 });
