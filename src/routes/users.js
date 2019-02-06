@@ -21,11 +21,17 @@ router.post('/signup', async (req, res) => {
     if (errors.length > 0) {
         res.render('users/signup', { mastername, email, password, confirm_password, errors });
     }else{
-        const newUser = new User({ mastername, email, password });
-        newUser.password = await newUser.encryptPassword(password);
-        await newUser.save();
-        req.flash('success_msg', 'You are registered successfully');
-        res.redirect('/giphies/');
+        const emailUser = await User.findOne({ email: email });
+        if (emailUser) {
+            req.flash('errors_msg', 'The email is already in use');
+            res.redirect('/signup');
+        }else{
+            const newUser = new User({ mastername, email, password });
+            newUser.password = await newUser.encryptPassword(password);
+            await newUser.save();
+            req.flash('success_msg', 'You are registered successfully');
+            res.redirect('/giphies/');
+        }
     }
 });
 
