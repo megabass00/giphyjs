@@ -7,7 +7,7 @@ Exists a [complementary project](https://github.com/megabass00/giphyjs-frontend)
 
 To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) which comes with [npm](http://npmjs.com) installed on your computer. 
 
-You can run the server from terminal and view the bot opening `http://localhost:3000` on your browser:
+You can run the server from terminal and view app opening `http://localhost:3000` on your browser:
 ~~~~
 # Clone this repository
 git clone https://github.com/megabass00/giphyjs
