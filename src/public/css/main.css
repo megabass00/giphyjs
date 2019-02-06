@@ -67,6 +67,12 @@ input[type="search"] {
 code {
     font-size: 80%;
 }
+footer a {
+    color: #65757d;
+}
+footer a:hover {
+    color: #ced4da;
+}
 
 
 
