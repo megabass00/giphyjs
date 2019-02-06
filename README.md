@@ -1,7 +1,7 @@
 # GiphyJS
 
 Project based on NodeJS, Express and MongoDB. Composed by frontend/backend with register and login users, and API with JWS token.
-Exists a [complementary project](https://github.com/megabass00/giphyjs-frontend) wich consumes API build in Angular 7.
+Exists a [complementary project](https://github.com/megabass00/giphyjs-frontend) wich consumes the API and it had built in Angular 7.
 
 ## To use
 
