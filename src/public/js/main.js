@@ -23,7 +23,6 @@ $(document).ready(function(){
         setTooltip('Failed!');
         hideTooltip();
     });
-    console.log(clipboard);
 
 
     // initialize preview giphy fields
