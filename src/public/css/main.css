@@ -29,6 +29,9 @@ h1, h2, h3, h4 {
     margin-right: 7px;
     color: #51ce00;
 }
+.navbar-nav .avatar-img {
+    border: 2px solid #c1c1c1;
+}
 
 
 /* DATATABLES */
