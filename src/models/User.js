@@ -18,7 +18,9 @@ UserSchema.methods.encryptPassword = async (password) => {
     return hash;
 };
 UserSchema.methods.matchPassword = async function(password) {
-    return await bcrypt.compare(password, this.password);
+    const match = await bcrypt.compare(password, this.password);
+    // console.log(match);
+    return match;
 };
 
 module.exports = mongoose.model('User', UserSchema); 

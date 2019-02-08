@@ -1,5 +1,6 @@
 // imports
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan');
 const expHb = require('express-handlebars');
@@ -7,6 +8,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const config = require('./config/config');
 
 
 // initizalizations
@@ -25,11 +27,13 @@ app.engine('.hbs', expHb({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+app.set('secret', config.secret);
 
 
 // middlewares
 // app.use(morgan('tiny'));
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(session({
     secret: 'XXX',
@@ -55,6 +59,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/giphies'));
+app.use(require('./routes/api'));
 // app.get('*', (req, res) => { 
 //     res.render('errors/404'); 
 // });
