@@ -30,7 +30,24 @@ router.post('/api/signin', (req, res) => {
 });
 
 router.post('/api/signup', (req, res) => {
+    
+});
 
+// authorization middleware
+router.use((req, res, next) => {
+    const token = req.body.token || req.query.token || req.headers['Authorization'];
+    if (token) {
+        jwt.verify(token, req.app.get('secret'), (err, decoded) => {
+            if (err) { 
+                res.status(403).json(getError('Authorization token fail')); 
+            }else{
+                req.token = token;
+                next();
+            }
+        });
+    }else{
+        res.status(403).json(getError('Authorization token is not found')); 
+    }
 });
 
 
