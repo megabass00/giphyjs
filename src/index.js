@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const expHb = require('express-handlebars');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const passport = require('passport');
 const config = require('./config/config');
@@ -35,11 +36,21 @@ app.set('secret', config.secret);
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+app.use(cookieParser(app.get('secret')));
 app.use(session({
-    secret: 'XXX',
-    resave: true,
-    saveUninitialized: true
+    key: 'user_sid',
+    secret: app.get('secret'),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 1000*60*60 * 1 // 1 hour
+    }
 }));
+// app.use(session({
+//     secret: app.get('secret'),
+//     resave: true,
+//     saveUninitialized: true
+// }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

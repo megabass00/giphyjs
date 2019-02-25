@@ -4,35 +4,38 @@ const passport = require('passport');
 const { isAuthenticated } = require('../helpers/auth');
 
 router.get('/signin', (req, res) => {
-    res.render('users/signin');
+    const email = req.signedCookies['username'];
+    const password = req.signedCookies['password'];
+    const remember = (email && password);
+    res.render('users/signin', { email, password, remember });
 });
 
-router.post('/signin', passport.authenticate('local', {
-    successRedirect: '/giphies/',
-    failureRedirect: '/signin',
-    failureFlash: true
-}));
-// router.post('/signin', (req, res, next) => {
-//     passport.authenticate('local', (err, user, info) => {
-//         if (err) { return next(err); }
-//         if (!user) { 
-//             req.flash('errors_msg', 'Access data is wrong');
-//             return res.redirect('/signin'); 
-//         }
-//         req.logIn(user, (err) => {
-//             if (err) { return next(err); }
-//             if (req.body.remember_me) {
-//                 var oneHour = 3600000;
-//                 req.session.cookie.expires = new Date(Date.now() + oneHour);
-//                 req.session.cookie.maxAge = oneHour;
-//                 console.log('Cookie session setted', req.session.cookie);
-//             }else{
-//                 req.session.cookie.expires = false;
-//             }
-//             return res.redirect('/giphies');
-//         });
-//     })(req, res, next);
-// });
+// router.post('/signin', passport.authenticate('local', {
+//     successRedirect: '/giphies/',
+//     failureRedirect: '/signin',
+//     failureFlash: true
+// }));
+router.post('/signin', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) { return next(err); }
+        if (!user) { 
+            req.flash('errors_msg', 'Access data is wrong');
+            return res.redirect('/signin'); 
+        }
+        req.logIn(user, (err) => {
+            if (err) { return next(err); }
+            if (req.body.remember_me) {
+                // var oneHour = 1000*60*60 * 1;
+                res.cookie('username', req.body.email, { httpOnly: true, signed: true });
+                res.cookie('password', req.body.password, { httpOnly: true, signed: true });
+            }else{
+                res.clearCookie('username');
+                res.clearCookie('password');
+            }
+            return res.redirect('/giphies');
+        });
+    })(req, res, next);
+});
 
 router.get('/signup', (req, res) => {
     res.render('users/signup');
