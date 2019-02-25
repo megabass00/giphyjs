@@ -1,0 +1,27 @@
+<div class="card col-lg-4 col-lg-offset-4 col-md-12 mx-auto mt-5 mb-5">
+    <div class="card-title mx-auto mt-3">
+        <img src="/img/logo.svg" width="100" alt="GiphyJS Logo">
+    </div>
+    <div class="card-body">
+        <div class="text-center">
+            <h3 class="main-color">
+                Change Password
+                <i class="fas fa-key"></i>
+            </h3>
+        </div>
+        {{> messages }}
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" value="{{password}}" type="password" class="form-control input-focus" placeholder="Type your password" required >
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input name="confirm_password" value="{{confirm_password}}" type="password" class="form-control input-focus" placeholder="Confirm password" required >
+            </div>
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-main btn-block">Update Password</button>
+            </div>
+        </form>
+    </div>
+</div>

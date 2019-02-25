@@ -71,8 +71,11 @@ router.get('/logout', (req, res) => {
 
 router.get('/edit-profile', isAuthenticated, async (req, res) => {
     const user = await User.findById(req.user.id);
-    console.log(user);
     res.render('users/edit', { user });
+});
+
+router.get('/change-password', isAuthenticated, (req, res) => {
+    res.render('users/change-pass');
 });
 
 module.exports = router;
