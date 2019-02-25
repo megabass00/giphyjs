@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const passport = require('passport');
+const { isAuthenticated } = require('../helpers/auth');
 
 router.get('/signin', (req, res) => {
     res.render('users/signin');
@@ -67,5 +68,11 @@ router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 })
+
+router.get('/edit-profile', isAuthenticated, async (req, res) => {
+    const user = await User.findById(req.user.id);
+    console.log(user);
+    res.render('users/edit', { user });
+});
 
 module.exports = router;
