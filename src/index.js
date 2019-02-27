@@ -7,6 +7,7 @@ const expHb = require('express-handlebars');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 const flash = require('connect-flash');
 const passport = require('passport');
 const config = require('./config/config');
@@ -32,7 +33,14 @@ app.set('secret', config.secret);
 
 
 // middlewares
+app.use((req, res, next) => {
+    req.getInternalPublicUrl = () => __dirname + '/public/';
+    req.getUrl = () => req.protocol + "://" + req.get('host') + req.originalUrl;
+    req.getBaseUrl = () => req.protocol + "://" + req.get('host') + '/';
+    return next();
+});
 // app.use(morgan('tiny'));
+app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
@@ -43,7 +51,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 1000*60*60 * 1 // 1 hour
+        expires: 1000*60*60 * 1  // 1 hour
     }
 }));
 // app.use(session({

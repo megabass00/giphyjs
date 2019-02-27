@@ -9,6 +9,12 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     avatar: { type: String, required: true, default: 'default.png' },
     created: { type: Date, default: Date.now }
+}, {
+    getters: true
+});
+
+UserSchema.virtual('urlAvatar').get(function() {
+    return '/img/users/' + this.avatar;
 });
 
 UserSchema.methods.encryptPassword = async (password) => {

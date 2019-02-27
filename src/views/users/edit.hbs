@@ -9,8 +9,10 @@
                 <i class="fas fa-user"></i>
             </h3>
         </div>
-        {{> messages }}
-        <form action="/signup" method="POST">
+        <form action="/edit-profile" method="POST" encType="multipart/form-data">
+            <div class="form-group text-center">
+                <img id="img-avatar" src="{{user.urlAvatar}}" class="avatar-img-profile rounded-circle mt-3" alt="Avatar">
+            </div>
             <div class="form-group">
                 <label for="mastername">Master Name</label>
                 <input name="mastername" value="{{user.mastername}}" type="text" class="form-control input-focus" placeholder="Enter your master name" required autofocus >
@@ -19,13 +21,30 @@
                 <label for="email">Email</label>
                 <input name="email" value="{{user.email}}" type="email" class="form-control input-focus" aria-describedby="emailHelp" placeholder="Enter your email" required >
             </div>
-            <div class="form-group">
-                <label for="image">Avatar</label>
-                <input type="file" name="avatar">
-            </div>
-            <div class="form-group mt-5">
+            <label for="avatar" class="avatar-file">
+                <span class="change-avatar-button text-center">
+                    <input id="select-avatar" type="file" name="avatar" accept="image/*" class="avatar-file-input" onchange="handleNewAvatar(this.files)">
+                    Change Avatar
+                </span>
+            </label>
+            <div class="form-group mt-3">
                 <button type="submit" class="btn btn-main btn-block">Update Profile</button>
             </div>
         </form>
+        {{> messages }}
     </div>
 </div>
+
+<script type="text/javascript">
+    function handleNewAvatar(files) {
+        if (files && files[0]) {
+            const newAvatar = files[0];
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                var avatar = document.getElementById('img-avatar');
+                avatar.src = e.target.result;
+            }
+            reader.readAsDataURL(newAvatar);
+        }
+    }
+</script>

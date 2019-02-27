@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const passport = require('passport');
+const slugify = require('slugify');
 const { isAuthenticated } = require('../helpers/auth');
 
+// singin //
 router.get('/signin', (req, res) => {
     const email = req.signedCookies['username'];
     const password = req.signedCookies['password'];
@@ -37,6 +39,7 @@ router.post('/signin', (req, res, next) => {
     })(req, res, next);
 });
 
+// singup //
 router.get('/signup', (req, res) => {
     res.render('users/signup');
 });
@@ -67,16 +70,42 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+// logout //
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 })
 
+// edit profile //
 router.get('/edit-profile', isAuthenticated, async (req, res) => {
     const user = await User.findById(req.user.id);
     res.render('users/edit', { user });
 });
 
+router.post('/edit-profile', isAuthenticated, async (req , res) => {
+    const { mastername, email } = req.body;
+    var avatar = req.user.avatar;
+    if (req.files.avatar) {
+        const extension = req.files.avatar.name.split('.')[1];
+        const filename = slugify(req.body.mastername.toLowerCase())+'.'+extension;
+        const pathToSave = req.getInternalPublicUrl() +'/img/users/'+ filename;
+        console.log('Uploading:', pathToSave);
+        req.files.avatar.mv(pathToSave, function(err) {
+            if (err) {
+                return res.status(500).send(err);
+            }else{
+                console.log('Avatar uploaded');
+            }
+        });
+        avatar = filename;
+    }
+    // console.log(mastername, email, avatar);
+    const user = await User.findByIdAndUpdate(req.user.id, { mastername, email, avatar }, {new: true});
+    req.flash('success_msg', 'Your data was updated successfully!');
+    res.redirect('/edit-profile');
+});
+
+// change password //
 router.get('/change-password', isAuthenticated, (req, res) => {
     res.render('users/change-pass');
 });

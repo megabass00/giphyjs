@@ -5,7 +5,7 @@ helpers.isAuthenticated = (req, res, next) => {
         return next();
     }
     req.flash('errors_msg', 'You are not authorized, you need a account');
-    res.redirect('/signup');
+    res.redirect('/signin');
 };
 
 helpers.hasToken = (req, res, next) => {
