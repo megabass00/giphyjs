@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const flash = require('connect-flash');
 const passport = require('passport');
+const resize = require('./helpers/resize');
+const { isAuthenticated } = require('./helpers/auth');
 const config = require('./config/config');
 
 
@@ -34,7 +36,7 @@ app.set('secret', config.secret);
 
 // middlewares
 app.use((req, res, next) => {
-    req.getInternalPublicUrl = () => __dirname + '/public/';
+    req.getInternalPublicUrl = () => path.join(__dirname, 'public/');
     req.getUrl = () => req.protocol + "://" + req.get('host') + req.originalUrl;
     req.getBaseUrl = () => req.protocol + "://" + req.get('host') + '/';
     return next();
@@ -54,11 +56,6 @@ app.use(session({
         expires: 1000*60*60 * 1  // 1 hour
     }
 }));
-// app.use(session({
-//     secret: app.get('secret'),
-//     resave: true,
-//     saveUninitialized: true
-// }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -79,6 +76,15 @@ app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/giphies'));
 app.use(require('./routes/api'));
+app.get('/resize-image', isAuthenticated, (req, res) => {
+    const imagePath = req.query.path;
+    const format = req.query.format || 'png';
+    const width = (req.query.width) ? parseInt(req.query.width) : 100;
+    const height = (req.query.height) ? parseInt(req.query.height) : 100;
+
+    res.type(`image/${format}`);
+    resize(imagePath, format, width, height).pipe(res);
+});
 // app.get('*', (req, res) => { 
 //     res.render('errors/404'); 
 // });
