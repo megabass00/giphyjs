@@ -9,11 +9,10 @@
                 <i class="fas fa-key"></i>
             </h3>
         </div>
-        {{> messages }}
-        <form action="/signup" method="POST">
+        <form action="/change-password" method="POST">
             <div class="form-group">
                 <label for="password">Password</label>
-                <input name="password" value="{{password}}" type="password" class="form-control input-focus" placeholder="Type your password" required >
+                <input name="password" value="{{password}}" type="password" class="form-control input-focus" placeholder="Type your password" required autofocus >
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
@@ -23,5 +22,6 @@
                 <button type="submit" class="btn btn-main btn-block">Update Password</button>
             </div>
         </form>
+        {{> messages }}
     </div>
 </div>

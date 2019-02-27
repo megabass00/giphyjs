@@ -110,4 +110,33 @@ router.get('/change-password', isAuthenticated, (req, res) => {
     res.render('users/change-pass');
 });
 
+router.post('/change-password', isAuthenticated, async (req, res) => {
+    const { password, confirm_password } = req.body;
+    const errors = [];
+    if (!password || !confirm_password) {
+        errors.push({message: 'It is necessary you fill the two fields'});
+    }
+    if (password != confirm_password) {
+        errors.push({message: 'The passwords do not match'})
+    }
+    if (password.length < 4) {
+        errors.push({message: 'Password must be least 4 characters'});
+    }
+    if (errors.length > 0) {
+        res.render('users/change-pass', { errors });
+    }else{
+        await User.findById(req.user.id).then(async (user) => {
+            if (user) {
+                user.password = await user.encryptPassword(password);
+                await user.save();
+                req.flash('success_msg', 'Your password was updated successfully');
+                res.redirect('/change-password');
+            }else{
+                req.flash('errors_msg', 'There was an error updating password');
+                res.redirect('/change-password');
+            }
+        });
+    }
+});
+
 module.exports = router;
