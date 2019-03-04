@@ -65,7 +65,10 @@ router.post('/signup', async (req, res) => {
             newUser.password = await newUser.encryptPassword(password);
             await newUser.save();
             req.flash('success_msg', 'You are registered successfully');
-            res.redirect('/giphies/');
+            req.login(newUser, function(err) {
+                if (err) { return next(err); }
+                return res.redirect('/giphies/');
+            });
         }
     }
 });
