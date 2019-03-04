@@ -1,6 +1,6 @@
 // imports
 require('custom-env').env(true);
-const colors = require('colors');
+require('colors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -17,8 +17,7 @@ const resize = require('./helpers/resize');
 const { isAuthenticated } = require('./helpers/auth');
 const config = require('./config/config');
 
-// console.log(('Runnin on "'+ process.env.ENVIRONMENT +'" mode').bgMagenta.black);
-console.log('Runnin on '.white + (process.env.ENVIRONMENT).bgMagenta.black + ' mode'.white);
+console.log('Runnin on '.white + (process.env.ENVIRONMENT || 'UNDEFINED').bgMagenta.black + ' mode'.white);
 
 
 // initizalizations
@@ -46,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
     console.info('Using Morgan logs'.yellow);
 }
 if (process.env.NODE_ENV !== 'production') {
-    app.use(errorHandler);
+    app.use(errorHandler());
     console.info('Using error handler'.yellow);
 }
 app.use((req, res, next) => {
@@ -109,7 +108,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // starting
 app.listen(app.get('port'), () => {
-    console.log(`Server listen on port ${app.get('port')}`.green);
+    console.log(`Server listen on port ${app.get('port')}`.cyan);
 });
 
 
