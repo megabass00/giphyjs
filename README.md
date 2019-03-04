@@ -28,3 +28,11 @@ docker-compose build --no-cache
 # Run containers
 docker-compose up
 ~~~~
+
+## Unit test
+
+This project implements unit test using Mocha, Chie and XXX libraries. You can execute test from package.json scripts:
+~~~~~
+# Run test script
+npm run test
+~~~~~
