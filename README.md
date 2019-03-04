@@ -17,3 +17,14 @@ npm start
 
 # Open in your browser: http://localhost:3000
 ~~~~
+
+## Using with Docker
+
+You can use project with Docker but you need above [install Docker](https://docs.docker.com/install) on your system. After clone the project, you must build it:
+~~~~
+# Build images
+docker-compose build --no-cache
+
+# Run containers
+docker-compose up
+~~~~

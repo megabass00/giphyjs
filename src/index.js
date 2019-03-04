@@ -1,4 +1,5 @@
 // imports
+require('custom-env').env(true);
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -10,9 +11,11 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const flash = require('connect-flash');
 const passport = require('passport');
-const resize = require('./helpers/resize');
+// const resize = require('./helpers/resize');
 const { isAuthenticated } = require('./helpers/auth');
 const config = require('./config/config');
+
+console.log('Runnin on '+ process.env.ENVIRONMENT +' mode');
 
 
 // initizalizations
@@ -76,15 +79,15 @@ app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/giphies'));
 app.use(require('./routes/api'));
-app.get('/resize-image', isAuthenticated, (req, res) => {
-    const imagePath = req.query.path;
-    const format = req.query.format || 'png';
-    const width = (req.query.width) ? parseInt(req.query.width) : 100;
-    const height = (req.query.height) ? parseInt(req.query.height) : 100;
+// app.get('/resize-image', isAuthenticated, (req, res) => {
+//     const imagePath = req.query.path;
+//     const format = req.query.format || 'png';
+//     const width = (req.query.width) ? parseInt(req.query.width) : 100;
+//     const height = (req.query.height) ? parseInt(req.query.height) : 100;
 
-    res.type(`image/${format}`);
-    resize(imagePath, format, width, height).pipe(res);
-});
+//     res.type(`image/${format}`);
+//     resize(imagePath, format, width, height).pipe(res);
+// });
 // app.get('*', (req, res) => { 
 //     res.render('errors/404'); 
 // });

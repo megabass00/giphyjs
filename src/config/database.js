@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/giphy-app', {
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/giphy-app';
+mongoose.connect(mongoURI, { 
     useCreateIndex: true,
     useNewUrlParser: true,
     useFindAndModify: false
 })
-.then(db => console.log('DB is connected'))
+.then(db => console.log('DB is connected to:', mongoURI))
 .catch(error => console.log(error));
