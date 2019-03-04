@@ -19,8 +19,8 @@ UserSchema.virtual('urlAvatar').get(function() {
 
 UserSchema.methods.encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);
-    const hash = bcrypt.hash(password, salt);
-    console.log(hash);
+    const hash = await bcrypt.hash(password, salt);
+    console.log(`new hash:${hash}`.yellow);
     return hash;
 };
 UserSchema.methods.matchPassword = async function(password) {
