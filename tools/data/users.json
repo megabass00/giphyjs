@@ -1,0 +1,8 @@
+[
+{"_id":{"$oid":"5c7d0db2037f54c9de0719cc"},"role":"ADMIN","avatar":"default.png","mastername":"Luisma","email":"megabass00@hotmail.com","password":"$2a$10$LkA58qq03LXILO7WMDMQXOEvVot40WN4Sp7aXlS9ccPoxmNpEbBTO","created":"2019-03-04T11:36:18.672Z"},
+{"_id":{"$oid":"5c7d0fa427c7a9ca086a5617"},"role":"USER","avatar":"default.png","mastername":"test user 1","email":"user1@giphyjs.com","password":"$2a$10$cXj.WJ2K.IjbkeUL42XwR.fGxxn1FV3sD2FqOTjmaK.fybXIiwOqa","created":"2019-03-04T11:44:36.759Z"},
+{"_id":{"$oid":"5c7d109b82a728ca6769a946"},"role":"USER","avatar":"default.png","mastername":"test user 2","email":"user2@giphyjs.com","password":"$2a$10$Q8qDqPUEIrhpim3XSSifwOqnXyNwgXbexASmoMIkP5VIQkM9bcv8m","created":"2019-03-04T11:48:43.031Z"},
+{"_id":{"$oid":"5c7d34e8eec3bcd338c01a97"},"role":"USER","avatar":"default.png","mastername":"test user 3","email":"user3@giphyjs.com","password":"$2a$10$af6zLXiIDAhocg9n/LNzHOkd8s6x79eX8O2zCXFNHhlUl19ncS9ri","created":"2019-03-04T14:23:36.366Z"},
+{"_id":{"$oid":"5c7d3583f75da0d351a9bb60"},"role":"USER","avatar":"default.png","mastername":"test user 4","email":"user4@giphyjs.com","password":"$2a$10$WJW4exY9mLgFzVW3ihVR7uBakUZN1mBVldHenmvAcWVIulFUfTAQW","created":"2019-03-04T14:26:11.825Z"},
+{"_id":{"$oid":"5c7d36042d7165d3740213e6"},"role":"USER","avatar":"default.png","mastername":"test user 5","email":"user5@giphyjs.com","password":"$2a$10$GZqP3/uvYN3onz4PDPwMOOtamYGYUE7.4PHRRo/Il94b6QSm4Yyxe","created":"2019-03-04T14:28:20.410Z"}
+]
