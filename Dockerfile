@@ -12,22 +12,30 @@ LABEL version="1.0"
 RUN node -v && mkdir -p /opt/app
 WORKDIR /opt/app
 
+# install libvips
+# RUN wget "https://github.com/libvips/libvips/releases/download/v8.7.4/vips-8.7.4.tar.gz" \
+#             && tar xf vips-8.7.4.tar.gz \
+#             && cd vips-8.7.4 \
+#             && ./configure
+
+# copy app files except 'node_modules'
+COPY . .
+RUN rm -rf node_modules
+
 # install node packages
-COPY package.json .
-RUN npm set progress=false \
-        && npm config set depth 0 \
-        && npm cache clean --force \
-        && npm i --loglevel=error
-RUN rm -rf node_modules/sharp/vendor && npm rebuild
+# COPY package.json .
+RUN npm set progress=false && \
+        npm config set depth 0 && \
+        npm cache clean --force && \
+        npm i --loglevel=error
+
+# RUN rm -rf node_modules/sharp/vendor && npm rebuild
 
 # install nodemon globally
-# RUN npm install nodemon -g --quiet
-
-# copy app files
-COPY . .
+# RUN npm i nodemon -g --quiet
 
 # expose ports
 EXPOSE 8000
 
 # init app
-CMD npm run docker
+CMD npm run start:docker
