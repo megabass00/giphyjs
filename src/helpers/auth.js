@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const helpers = {};
 
 helpers.isAuthenticated = (req, res, next) => {
@@ -24,10 +25,11 @@ helpers.hasToken = (req, res, next) => {
     }
 };
 
-helpers.getError = (message) => {
+helpers.getError = (message, errors=[]) => {
     return {
         success: false,
-        message
+        message,
+        errors
     }
 }
 
