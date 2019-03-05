@@ -29,10 +29,18 @@ docker-compose build --no-cache
 docker-compose up
 ~~~~
 
-## Unit test
+## Test units
 
-This project implements unit test using Mocha, Chie and XXX libraries. You can execute test from package.json scripts:
+This project implements test units using [mocha](https://www.npmjs.com/package/mocha), [chai](https://www.npmjs.com/package/chai), [chai-http](https://www.npmjs.com/package/chai-http) and [superagent](https://www.npmjs.com/package/superagent) libraries. You can execute test from package.json scripts:
 ~~~~~
 # Run test script
 npm run test
 ~~~~~
+
+Also you can execute test units trough the [live-server](https://www.npmjs.com/package/live-server) library directly from browser:
+~~~~~
+# Run test units from browser
+npm run test:browser
+~~~~~
+
+### Thanks to my jedi partners :)
