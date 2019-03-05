@@ -47,6 +47,6 @@ npm run test:browser
 - :neckbeard: Kraken 
 - :japanese_goblin: Garcilaso
 - :person_with_blond_hair: Markes
-- :sunglasses: Otto
+- :godmode: Otto
 - :smirk: Ivan
 - :sunflower: Domator
