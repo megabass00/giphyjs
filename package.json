@@ -8,7 +8,9 @@
     "prod": "NODE_ENV=production node src/index.js",
     "start:docker": "NODE_ENV=docker node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "NODE_ENV=test mocha --timeout 5000 src/test/*.test.js"
+    "test": "NODE_ENV=test mocha --timeout 5s src/test/*.test.js --exit",
+    "test:watch": "NODE_ENV=test mocha --timeout 5s src/test/*.test.js --watch",
+    "test:browser": "NODE_ENV=test live-server --port=9000 --open=src/test-browser.html"
   },
   "repository": {
     "type": "git",
@@ -45,7 +47,10 @@
     "chai-http": "^4.2.1",
     "errorhandler": "^1.5.0",
     "faker": "^4.1.0",
+    "live-server": "^1.2.1",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "superagent": "^4.1.0",
+    "supertest": "^3.4.2"
   }
 }

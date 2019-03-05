@@ -108,7 +108,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // starting
 app.listen(app.get('port'), () => {
-    console.log(`Server listen on port ${app.get('port')}`.cyan);
+    console.log('Server listen on port '.blue + app.get('port').cyan);
 });
 
 
