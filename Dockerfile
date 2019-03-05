@@ -34,11 +34,8 @@ RUN npm set progress=false && \
 # install nodemon globally
 # RUN npm i nodemon -g --quiet
 
-# install mongodb tools
-# RUN npm i mongodb-tools -g
-
-# fill initial data
-# RUN sh tools/filldata.sh
+# install mongodb tools and fill initial data
+# RUN npm i mongodb-tools -g && sh tools/filldata.sh
 
 # expose ports
 EXPOSE 8000
