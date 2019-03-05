@@ -6,5 +6,5 @@ mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useFindAndModify: false
 })
-.then(db => console.log('DB is connected to: '.cyan + (mongoURI).bgCyan.black))
+.then(db => console.log('DB is connected to: '.blue + (mongoURI).cyan))
 .catch(error => console.log(error));
