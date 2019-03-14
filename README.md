@@ -43,5 +43,5 @@ Also you can execute test units trough the [live-server](https://www.npmjs.com/p
 npm run test:browser
 ~~~~~
 
-### Thanks
+## Thanks
 Thanks to my jedi partners: :neckbeard: Kraken, :japanese_goblin: Garcilaso, :person_with_blond_hair: Markes, :godmode: Otto, :smirk: Ivan y :sunflower: Domator.
