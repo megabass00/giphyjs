@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "frontend/backend with register/login users",
   "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "start": "node src/index.js",
     "prod": "NODE_ENV=production node src/index.js",
