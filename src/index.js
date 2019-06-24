@@ -10,7 +10,6 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
-const errorHandler = require('errorhandler');
 const flash = require('connect-flash');
 const passport = require('passport');
 const resize = require('./helpers/resize');
@@ -45,6 +44,7 @@ if (process.env.NODE_ENV === 'production') {
     console.info('Using Morgan logs'.yellow);
 }
 if (process.env.NODE_ENV !== 'production') {
+    const errorHandler = require('errorhandler');
     app.use(errorHandler());
     console.info('Using error handler'.yellow);
 }

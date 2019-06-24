@@ -1,3 +1,3 @@
 // Procfile
 
-web: node src/index.js
+web: npm run prod

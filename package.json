@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/index.js",
     "prod": "NODE_ENV=production node src/index.js",
-    "start:docker": "NODE_ENV=docker node src/index.js",
+    "heroku:start": "npm i && npm start",
+    "start:docker": "NODE_ENV=docker npm start",
     "dev": "nodemon src/index.js",
     "test": "NODE_ENV=test mocha --timeout 5s src/test/*.test.js --exit",
     "test:watch": "NODE_ENV=test mocha --timeout 5s src/test/*.test.js --watch",
