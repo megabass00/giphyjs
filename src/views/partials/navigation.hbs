@@ -3,7 +3,8 @@
         <a class="navbar-brand" href="#">
             <img src="/img/logo.svg" height="35" alt="GiphyJS Logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -17,44 +18,64 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 {{#if user}}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/giphies">
+                            <i class="fas fa-list-ul"></i>
+                            Giphy List
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/giphies">
-                                <i class="fas fa-list-ul"></i>
-                                Giphy List
-                            </a>
-                            <a class="dropdown-item" href="/giphies/new-giphy">
-                                <i class="fas fa-plus"></i>
-                                Add New Giphy
-                            </a>
-                            <a class="dropdown-item" href="/edit-profile">
-                                <i class="fas fa-user"></i>
-                                Edit Profile
-                            </a>
-                            <a class="dropdown-item" href="/change-password">
-                                <i class="fas fa-key"></i>
-                                Change Password
-                            </a>
-                            <a class="dropdown-item" href="/logout">
-                                <i class="fas fa-sign-out-alt"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                    <div class="d-flex justify-content-center align-items-center ml-3">
-                        Wellcome Master {{user.mastername}}
-                        <img src="{{user.urlAvatar}}" height="30" width="30" alt="Master avatar" class="avatar-img rounded-circle ml-4">
+                        <a class="dropdown-item" href="/giphies/new-giphy">
+                            <i class="fas fa-plus"></i>
+                            Add New Giphy
+                        </a>
+                        <a class="dropdown-item" href="/edit-profile">
+                            <i class="fas fa-user"></i>
+                            Edit Profile
+                        </a>
+                        <a class="dropdown-item" href="/change-password">
+                            <i class="fas fa-key"></i>
+                            Change Password
+                        </a>
+                        <a class="dropdown-item" href="/logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
                     </div>
+                </li>
+                {{#if isAdmin}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/users">
+                            <i class="fas fa-list-ul"></i>
+                            User List
+                        </a>
+                        <a class="dropdown-item" href="/users/new-giphy">
+                            <i class="fas fa-plus"></i>
+                            Add New User
+                        </a>
+                    </div>
+                </li>
+                {{/if}}
+                <div class="d-flex justify-content-center align-items-center ml-3">
+                    Wellcome Master {{user.mastername}}
+                    <img src="{{user.urlAvatar}}" height="30" width="30" alt="Master avatar"
+                        class="avatar-img rounded-circle ml-4">
+                </div>
                 {{else}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signin">Signin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signup">Signup</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signin">Signin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
                 {{/if}}
             </ul>
         </div>
