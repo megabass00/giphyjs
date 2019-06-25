@@ -43,6 +43,9 @@ input[type="search"] {
     border: 1px solid #bbb;
     border-radius: 5px;
 }
+.dt-buttons {
+    display: inline;
+}
 
 
 

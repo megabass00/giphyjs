@@ -1,11 +1,17 @@
 $(document).ready(function(){
 
-    // initialize datatables
-    $('.datatable-js').DataTable( {
-        "columnDefs": [
+    // initialize datatables adding reset button to search box
+    $('#datatable-giphies-list').DataTable( {
+        columnDefs: [
             { "orderable": false, "targets": [1,3] }
+        ],
+        buttons: [
+            {
+                text: 'Reset',
+                action: (e, dt, node, config) => dt.search('').draw()
+            }
         ]
-    });
+    }).buttons().container().appendTo( $('.dataTables_filter label', $('.dataTables_wrapper.no-footer') ) );
 
 
     // enable tooltips
