@@ -3,60 +3,64 @@
         Giphy List
     </h3>
     {{#if giphies}}
-        <table class="datatable-js">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Giphy</th>
-                    <th>Description</th>
-                    <th class="text-right">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each giphies}}
-                    <tr>
-                        <td>{{ title }}</td>
-                        <td>
-                            <img height="30" data-action="lumos" src="{{ url }}" alt="Giphy APP">
-                        </td>
-                        <td>
-                            {{#if description }}
-                                {{ description }}
-                            {{else}}
-                                <div style="color:#bbb;">
-                                    <small><i class="mr-2">No description</i></small>
-                                    <i class="far fa-frown"></i>
-                                </div>
-                            {{/if}}
-                        </td>
-                        <td class="text-right">
-                            <button class="btn btn-primary btn-clipboard" data-clipboard-text="{{ url }}">
-                                <i class="far fa-copy"></i>
-                            </button>
-                            <a href="{{ url }}" class="btn btn-success" target="_blank" data-toggle="tooltip" data-placement="top" title="Open giphy url">
-                                <i class="far fa-eye"></i>
-                            </a>
-                            <a href="/giphies/edit-giphy/{{ _id }}" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit giphy">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="/giphies/delete/{{ _id }}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Remove giphy"  onclick="return confirm('Are you sure master?')">
-                                <i class="far fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    <table class="datatable-js">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Giphy</th>
+                <th>Description</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each giphies}}
+            <tr>
+                <td>{{ title }}</td>
+                <td>
+                    <img height="30" data-action="lumos" src="{{ url }}" alt="Giphy APP">
+                </td>
+                <td>
+                    {{#if description }}
+                    {{ description }}
+                    {{else}}
+                    <div style="color:#bbb;">
+                        <small><i class="mr-2">No description</i></small>
+                        <i class="far fa-frown"></i>
+                    </div>
+                    {{/if}}
+                </td>
+                <td class="text-right">
+                    <button class="btn btn-primary btn-clipboard" id="btn-clipboard-{{ _id }}"
+                        data-clipboard-text="{{ url }}">
+                        <i class="far fa-copy"></i>
+                    </button>
+                    <a href="{{ url }}" class="btn btn-success" target="_blank" data-toggle="tooltip"
+                        data-placement="top" title="Open giphy url">
+                        <i class="far fa-eye"></i>
+                    </a>
+                    <a href="/giphies/edit-giphy/{{ _id }}" class="btn btn-warning" data-toggle="tooltip"
+                        data-placement="top" title="Edit giphy">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/giphies/delete/{{ _id }}" class="btn btn-danger" data-toggle="tooltip"
+                        data-placement="top" title="Remove giphy" onclick="return confirm('Are you sure master?')">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
     {{else}}
-        <div class="row">
-            <div class="mx-auto text-center">
-                <div class="alert alert-warning" role="alert">
-                    In this moment there are not giphies...
-                </div>
-                <a href="/giphies/new-giphy" class="btn btn-main btn-block">
-                    Create one!
-                </a>
+    <div class="row">
+        <div class="mx-auto text-center">
+            <div class="alert alert-warning" role="alert">
+                In this moment there are not giphies...
             </div>
+            <a href="/giphies/new-giphy" class="btn btn-main btn-block">
+                Create one!
+            </a>
         </div>
+    </div>
     {{/if}}
 </div>

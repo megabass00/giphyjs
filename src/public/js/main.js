@@ -14,14 +14,17 @@ $(document).ready(function(){
 
     // initialize buttons to copy to clipboard
     var buttons = document.querySelectorAll('.btn-clipboard');
-    var clipboard = new ClipboardJS('button');
+    var clipboard = new ClipboardJS('button', {
+        target: (trigger) => trigger.nextElementSibling
+    });
     clipboard.on('success', (e) => {
-        setTooltip('Copied!');
-        hideTooltip();
+        const identifier = $(e.trigger).attr('id');
+        setTooltip('Copied!', identifier);
+        hideTooltip(identifier);
     });
     clipboard.on('error', (e) => {
-        setTooltip('Failed!');
-        hideTooltip();
+        setTooltip('Failed!', identifier);
+        hideTooltip(identifier);
     });
 
 
@@ -49,15 +52,19 @@ $(document).ready(function(){
 });
 
 // FUNCTIONS //
-function setTooltip(message) {
-    $('.btn-clipboard').tooltip('hide')
+function setTooltip(message, identifier = null) {
+    let selector = '.btn-clipboard';
+    if (identifier) selector = '#' + identifier;
+    $(selector).tooltip('hide')
         .attr('data-original-title', message)
         .tooltip('show');
 }
 
-function hideTooltip() {
+function hideTooltip(identifier = null) {
+    let selector = '.btn-clipboard';
+    if (identifier) selector = '#' + identifier;
     setTimeout(function() {
-        $('.btn-clipboard').tooltip('hide');
+        $(selector).tooltip('hide');
     }, 1000);
 }
 
