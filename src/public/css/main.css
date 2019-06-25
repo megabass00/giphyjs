@@ -23,6 +23,15 @@ h1, h2, h3, h4 {
 .main-color {
     color: #51ce00;
 }
+.bg-main {
+    background: #51ce00;
+}
+.rounded {
+    border: 1px solid #bbb;
+    border-radius: 10px;
+}
+
+
 
 /* NAVBAR */
 .dropdown-item i {
@@ -220,3 +229,10 @@ footer a:hover {
     }
 }
   
+
+
+/* ABOUT view */
+.contact-form-wrapper {
+    margin-top: 50px !important;
+    margin: 0 auto;
+}
