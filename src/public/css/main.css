@@ -231,6 +231,25 @@ footer a:hover {
   
 
 
+
+/* INDEX view */
+.home-slide-item {
+    text-align: center;
+    border-radius: 5px;
+}
+.home-slide-img {
+    max-height: 150px;
+    border-radius: 5px;
+}
+.home-slide-label {
+    color: greenyellow;
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 1px;
+}
+
+
+
 /* ABOUT view */
 .contact-form-wrapper {
     margin-top: 50px !important;

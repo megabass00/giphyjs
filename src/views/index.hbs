@@ -1,1 +1,23 @@
-<h1>Home</h1>
+<div class="jumbotron mt-4">
+    <h1>Home</h1>
+
+    <p class="mt-4">
+        Welcome to GiphyJs website where you can find the best giphies selection on the world. You will see a lot of
+        great feaures to you can search quickly what you want ;-)
+    </p>
+
+    <hr class="my-4">
+
+    <h3>Top Viewed</h3>
+    <label>
+        <span id="current">-</span> of <span id="total">-</span>
+    </label>
+    <ul id="home-slide" class="cs-hidden">
+        {{#each topGiphies}}
+        <li class="home-slide-item">
+            <label class="home-slide-label"></label>
+            <img class="home-slide-img" src="{{ url }}" />
+        </li>
+        {{/each}}
+    </ul>
+</div>

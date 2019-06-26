@@ -19,7 +19,6 @@ $(document).ready(function(){
 
 
     // initialize buttons to copy to clipboard
-    var buttons = document.querySelectorAll('.btn-clipboard');
     var clipboard = new ClipboardJS('button', {
         target: (trigger) => trigger.nextElementSibling
     });
@@ -42,6 +41,28 @@ $(document).ready(function(){
             var $img = $input.parent().find('img');
             $img.attr('src', url);
         }
+    });
+
+
+    // initialize home slide
+    $('#current').text('1');
+    $('#total').text('20');
+    let homeSlider = $('#home-slide');
+    // homeSlider.css('opacity', 0);
+    homeSlider.lightSlider({
+        autoWidth: true,
+        auto:true,
+        loop:true,
+        pauseOnHover: true,
+        pager: false,
+        onSliderLoad: function() {
+            homeSlider.removeClass('cS-hidden');
+            // homeSlider.css('opacity', 1);
+        },
+        onBeforeSlide: function (el) {
+            $('#current').text(el.getCurrentSlideCount());
+            $('#total').text(el.getTotalSlideCount());
+        } 
     });
     
     
