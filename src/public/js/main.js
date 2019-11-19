@@ -1,17 +1,55 @@
 $(document).ready(function(){
 
     // initialize datatables adding reset button to search box
-    $('#datatable-giphies-list').DataTable( {
-        columnDefs: [
-            { "orderable": false, "targets": [1,3] }
+    $('#datatable-giphies-list').DataTable({
+        serverSide: true,
+        processing: true,
+        // length: 10,
+        ajax: {
+            url: '/giphies-ajax',
+            type: 'POST',
+        },
+        columns: [
+            { data: 'title' },
+            { data: 'url' },
+            { data: 'description' },
         ],
-        buttons: [
+        columnDefs: [
+            { 
+                "orderable": false, 
+                "targets": [0,2] 
+            },
             {
-                text: 'Reset',
-                action: (e, dt, node, config) => dt.search('').draw()
-            }
+                targets: 1,
+                data: null,
+                render: (data, type, row, meta) => '<img height="30" data-action="lumos" src="'+ data +'" alt="Giphy JS">',
+            },
+            {
+                targets: 3,
+                data: null,
+                className: 'text-right',
+                render: (data, type, row, meta) => `
+                    <button class="btn btn-primary btn-clipboard" id="btn-clipboard-${data._id }"
+                        data-clipboard-text="${data.url}">
+                        <i class="far fa-copy"></i>
+                    </button>
+                    <a href="${data.url}" class="btn btn-success" target="_blank" data-toggle="tooltip"
+                        data-placement="top" title="Open giphy url">
+                        <i class="far fa-eye"></i>
+                    </a>
+                    <a href="/giphies/edit-giphy/${data._id}" class="btn btn-warning" data-toggle="tooltip"
+                        data-placement="top" title="Edit giphy">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/giphies/delete/${data._id}" class="btn btn-danger" data-toggle="tooltip"
+                        data-placement="top" title="Remove giphy" onclick="return confirm('Are you sure master?')">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                `,
+            },
         ]
-    }).buttons().container().appendTo( $('.dataTables_filter label', $('.dataTables_wrapper.no-footer') ) );
+    }).buttons().container().appendTo( $('.dataTables_filter label', $('.dataTables_wrapper.no-footer') ) )
+    .on('xhr', () => {});
 
 
     // enable tooltips

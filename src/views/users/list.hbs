@@ -1,0 +1,33 @@
+<div class="card-datatable mx-auto">
+    <h3 class="main-color mb-4">
+        Users List
+    </h3>
+    {{#if users}}
+    <table class="table table-respondive table-striped table-hover" id="datatable-user-list">
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Role</th>
+                <th>Master Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>
+                    <img height="30" data-action="lumos" src="{{ urlAvatar }}" alt="User avatar">
+                </td>
+                <td>{{ role }}</td>
+                <td>
+                    {{ mastername }}
+                </td>
+                <td>
+                    {{ email }}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/if}}
+</div>

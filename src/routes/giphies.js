@@ -3,8 +3,21 @@ const Giphy = require('../models/Giphy');
 const { isAuthenticated } = require('../helpers/auth');
 
 router.get('/giphies', isAuthenticated, async (req, res) => {
-    const giphies = await  Giphy.find();
+    const giphies = await Giphy.find().limit(10);
     res.render('giphies/list', { giphies });
+});
+
+router.post('/giphies-ajax', async (req, res) => {
+    // console.log('BODY', req.body);
+    const { draw, start, length } = req.body;
+    const reqStart = parseInt(start);
+    const reqLength = parseInt(length);
+    console.log('Pagination', `Starts at ${start} with length ${length}`);
+    // console.log('Search', search);
+    const giphies = await Giphy.find().skip(reqStart).limit(reqLength);
+    const total = await Giphy.countDocuments();
+    const retval = { data: giphies, draw, recordsTotal: total, recordsFiltered: total };
+    res.json(retval);
 });
 
 router.get('/giphies/new-giphy', isAuthenticated, (req, res) => {
