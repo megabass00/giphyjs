@@ -3,26 +3,16 @@ $(document).ready(function(){
     // initialize datatables adding reset button to search box
     $('#datatable-giphies-list').DataTable({
         serverSide: true,
-        // processing: true,
+        processing: true,
         // length: 10,
         ajax: {
             url: '/giphies-ajax',
-            method: 'POST',
-            dataSrc: 'data',
-            contentType: 'application/json',
-            data: d => {
-                console.log('---- AJAX ----', d);
-                return JSON.stringify(d);
-            },
-            complete: (xhr, status) => {
-                // console.log('---- complete', xhr.responseText);
-                console.log('AJAX request', status ? 'OK' : 'ERROR');
-            }
+            type: 'POST',
         },
-        aoColumns: [
-            { mData: 'title' },
-            { mData: 'url' },
-            { mData: 'description' },
+        columns: [
+            { data: 'title' },
+            { data: 'url' },
+            { data: 'description' },
         ],
         columnDefs: [
             { 
@@ -57,24 +47,9 @@ $(document).ready(function(){
                     </a>
                 `,
             },
-            // {
-            //     targets: 3,
-            //     data: null,
-            //     render: (data, type, row, meta) => '<pre>'+JSON.stringify(data, null, 2) +'</pre>',
-            // }
-        ],
-        buttons: [
-            {
-                text: 'Reset',
-                action: (e, dt, node, config) => dt.search('').draw()
-            }
         ]
     }).buttons().container().appendTo( $('.dataTables_filter label', $('.dataTables_wrapper.no-footer') ) )
-    .on('xhr', function () {
-        // var json = table.ajax.json();
-        // console.log(json.data.length +' row(s) were loaded');
-        console.log('------- LOADED');
-    } );
+    .on('xhr', () => {});
 
 
     // enable tooltips

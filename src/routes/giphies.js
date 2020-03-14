@@ -8,13 +8,15 @@ router.get('/giphies', isAuthenticated, async (req, res) => {
 });
 
 router.post('/giphies-ajax', async (req, res) => {
-    const { start, length, search } = req.body;
+    // console.log('BODY', req.body);
+    const { draw, start, length } = req.body;
+    const reqStart = parseInt(start);
+    const reqLength = parseInt(length);
     console.log('Pagination', `Starts at ${start} with length ${length}`);
-    console.log('Search', search);
-    const giphies = await Giphy.find().skip(start).limit(length);
+    // console.log('Search', search);
+    const giphies = await Giphy.find().skip(reqStart).limit(reqLength);
     const total = await Giphy.countDocuments();
-    const retval = { data: giphies, "sEcho": length, "iTotalRecords": total, "iTotalDisplayRecords": total };
-    // console.log('RETVAL', retval);
+    const retval = { data: giphies, draw, recordsTotal: total, recordsFiltered: total };
     res.json(retval);
 });
 
