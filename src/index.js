@@ -58,7 +58,7 @@ app.use((req, res, next) => {
     return next();
 });
 app.use(fileUpload());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser(app.get('secret')));

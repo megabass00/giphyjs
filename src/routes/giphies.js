@@ -9,13 +9,16 @@ router.get('/giphies', isAuthenticated, async (req, res) => {
 
 router.post('/giphies-ajax', async (req, res) => {
     // console.log('BODY', req.body);
-    const { draw, start, length } = req.body;
+    const { draw, start, length, columns, search, order } = req.body;
     const reqStart = parseInt(start);
     const reqLength = parseInt(length);
     console.log('Pagination', `Starts at ${start} with length ${length}`);
-    // console.log('Search', search);
-    const giphies = await Giphy.find().skip(reqStart).limit(reqLength);
-    const total = await Giphy.countDocuments();
+    console.log('Order', `Column ${order[0].column} with direction ${order[0].dir}`);
+    console.log('Search', `Searching '${search.value}' with regex ${search.regex == 'false' ? 'NO' : 'YES'}`);
+
+    const query = search.value ? Giphy.find({ title: new RegExp(search.value, 'i') }) : Giphy.find();
+    const giphies = await query.skip(reqStart).limit(reqLength).sort({ title: order[0].dir=='asc' ? 1 : -1 });
+    const total = search.value ? (await query).length : await Giphy.countDocuments();
     const retval = { data: giphies, draw, recordsTotal: total, recordsFiltered: total };
     res.json(retval);
 });
