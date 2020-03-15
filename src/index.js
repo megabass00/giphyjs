@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan');
 const expHb = require('express-handlebars');
+const Handlebars = require('handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -29,6 +31,7 @@ require('./config/passport');
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', expHb({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),

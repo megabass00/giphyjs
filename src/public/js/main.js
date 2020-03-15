@@ -16,8 +16,12 @@ $(document).ready(function(){
         ],
         columnDefs: [
             { 
+                "orderable": true, 
+                "targets": [0] 
+            },
+            { 
                 "orderable": false, 
-                "targets": [0,2] 
+                "targets": [1,2] 
             },
             {
                 targets: 1,

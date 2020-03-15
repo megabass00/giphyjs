@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/megabass00/giphyjs#readme",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "colors": "^1.3.3",
@@ -37,6 +38,7 @@
     "express-fileupload": "^1.1.1-alpha.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "handlebars": "^4.5.3",
     "jsonwebtoken": "^8.4.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.7",
